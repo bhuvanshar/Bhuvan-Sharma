@@ -1,24 +1,28 @@
-import logo from './logo.svg';
-import './App.css';
-
+import React from 'react'
+import { createBrowserRouter, createRoutesFromElements, RouterProvider, Route } from 'react-router-dom';
+import Dashboard from './components/Dashboard';
+import Cart from './components/Cart';
+import RootLayout from './components/RootLayout';
+import LearnMore from './components/LearnMore';
+import './App.css'
+// import AgGrid from './components/AgGrid';
 function App() {
+
+  const router = createBrowserRouter(createRoutesFromElements(
+    <Route path='/' element={<RootLayout/>}>
+      <Route index element ={<Dashboard/>}></Route>
+      <Route path='/cart' element={<Cart/>}></Route>
+      <Route path='/AgBoard' element = {<Cart/>}></Route>
+      <Route path='/learnMore' element = {<LearnMore/>}></Route>
+      
+    </Route>
+  ))
+
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+    <RouterProvider router = {router}/>
+    </>
   );
 }
 
